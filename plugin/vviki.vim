@@ -49,6 +49,13 @@ if !exists('g:vviki_links_include_ext')
     let g:vviki_links_include_ext = 0
 endif
 
+if !exists('g:vviki_open_cmd')
+    " Internal wiki page links include the file extension.
+    " (File extension is set via g:vviki_ext.)
+    let g:vviki_open_cmd = "xdg-open"
+endif
+
+
 " Navigation history for Backspace
 let s:history = []
 
@@ -239,7 +246,7 @@ endfunction
 
 
 function! VVGoUrl(url)
-	call system('xdg-open '.shellescape(a:url).' &')
+	call system(g:vviki_open_cmd.' '.shellescape(a:url).' &')
 endfunction
 
 
